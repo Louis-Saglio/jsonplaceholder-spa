@@ -27,11 +27,14 @@ class App extends Component {
     }
 
     render() {
+        const pages = Array.from(Array(~~(this.state.users.length/this.userByPage) + 1).keys());
+        const firstUserIndex = (this.state.pageNum) * this.userByPage;
+        const secondUserIndex = (this.state.pageNum + 1) * this.userByPage;
         return (
             <div>
-                {Array.from(Array(~~(this.state.users.length/this.userByPage) + 1).keys()).map(pageNum => <button key={pageNum} onClick={() => this.changePage(pageNum)}>{pageNum+1}</button>)}
+                {pages.map(pageNum => <button key={pageNum} onClick={() => this.changePage(pageNum)}>{pageNum+1}</button>)}
                 <ul>
-                    {this.state.users.slice((this.state.pageNum) * this.userByPage, (this.state.pageNum + 1) * this.userByPage).map(user => <li key={user.id}><User name={user.name} id={user.id}/></li>)}
+                    {this.state.users.slice(firstUserIndex, secondUserIndex).map(user => <li key={user.id}><User name={user.name} id={user.id}/></li>)}
                 </ul>
             </div>
         );
