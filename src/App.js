@@ -11,9 +11,8 @@ class App extends Component {
         super();
         this.state = {
             users: [],
-            pageNum: 1
+            pageNum: 0
         };
-        this.pages = [1, 2, 3];
         this.userByPage = 4
     }
 
@@ -30,9 +29,9 @@ class App extends Component {
     render() {
         return (
             <div>
-                {this.pages.map(pageNum => <button onClick={() => this.changePage(pageNum)}>{pageNum}</button>)}
+                {Array.from(Array(~~(this.state.users.length/this.userByPage) + 1).keys()).map(pageNum => <button key={pageNum} onClick={() => this.changePage(pageNum)}>{pageNum+1}</button>)}
                 <ul>
-                    {this.state.users.slice((this.state.pageNum - 1) * this.userByPage, (this.state.pageNum) * this.userByPage).map(user => <li><User name={user.name} id={user.id}/></li>)}
+                    {this.state.users.slice((this.state.pageNum) * this.userByPage, (this.state.pageNum + 1) * this.userByPage).map(user => <li key={user.id}><User name={user.name} id={user.id}/></li>)}
                 </ul>
             </div>
         );

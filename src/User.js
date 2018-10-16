@@ -24,7 +24,7 @@ class User extends Component {
             <div>
                 <p onClick={() => this.onClick()}>{this.props.name}</p>
                 <ul>
-                    {this.state.posts.map(post => <li><Post title={post.title} id={post.id} body={post.body}/></li>)}
+                    {this.state.posts.map(post => <li key={post.id}><Post title={post.title} id={post.id} body={post.body}/></li>)}
                 </ul>
             </div>
         );

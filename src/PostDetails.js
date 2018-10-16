@@ -28,7 +28,7 @@ class PostDetails extends Component {
                 <li>{this.props.id}</li>
                 <li>
                     <span onClick={() => this.onClick()}>{this.props.body}</span>
-                    <ul>{this.state.comments.map(comment => <li><Comment name={comment.name}/></li>)}</ul>
+                    <ul>{this.state.comments.map(comment => <li key={comment.id}><Comment name={comment.name}/></li>)}</ul>
                 </li>
             </ul>
         );

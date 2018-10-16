@@ -16,7 +16,7 @@ class Post extends Component {
     }
 
     render() {
-        let details = null
+        let details = null;
         if (!this.state.collapsed) {
             details = <PostDetails id={this.props.id} body={this.props.body}/>
         }
