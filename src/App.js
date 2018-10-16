@@ -10,8 +10,11 @@ class App extends Component {
     constructor() {
         super();
         this.state = {
-            users: []
-        }
+            users: [],
+            pageNum: 1
+        };
+        this.pages = [1, 2, 3];
+        this.userByPage = 4
     }
 
     async componentDidMount() {
@@ -20,11 +23,18 @@ class App extends Component {
         })
     }
 
+    changePage(pageNum) {
+        this.setState({pageNum})
+    }
+
     render() {
         return (
-            <ul className="App">
-                {this.state.users.map(user => <li><User name={user.name} id={user.id}/></li>)}
-            </ul>
+            <div>
+                {this.pages.map(pageNum => <button onClick={() => this.changePage(pageNum)}>{pageNum}</button>)}
+                <ul>
+                    {this.state.users.slice((this.state.pageNum - 1) * this.userByPage, (this.state.pageNum) * this.userByPage).map(user => <li><User name={user.name} id={user.id}/></li>)}
+                </ul>
+            </div>
         );
     }
 }
